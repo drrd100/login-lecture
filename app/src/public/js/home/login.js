@@ -5,12 +5,15 @@ const id = document.querySelector("#id"),
 loginBtn.addEventListener("click", login);
 
 function login() {
-    console.log("클릭");
-
     const req = {
         id: id.value,
         password: password.value,
     }
-
-    console.log(req);
+    fetch("./login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "appliction/json",
+        },
+        body: JSON.stringify(req),
+    });
 }
