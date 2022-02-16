@@ -7,29 +7,28 @@ const output = {
     }
 }; 
 
-const users = {
-    id: ["test1", "test2", "test3"],
-    password: ["1", "2", "3"],
-};
+const UserStorage = require("../../models/UserStorage");
 
 const process = {
     login: (req, res) => {
         const id = req.body.id,
             password = req.body.password;
         
+        const users = UserStorage.getUsers("id", "password","name");
+        console.log(users);
+
+        const response = {};
         if (users.id.includes(id)) {
             const idx = users.id.indexOf(id);
             if (users.password[idx] === password) {
-                return res.json({
-                    success: true,
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
 
-        return res.json({
-            success: false,
-            msg: "로그인에 실패하셨습니다",
-        })
+        response.success = false;
+        response.msg = "로그인에 실패하셨습니다."
+        return res.json(response)
     },
 };
 
