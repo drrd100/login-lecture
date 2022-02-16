@@ -4,6 +4,9 @@ const output = {
     },
     login: (req, res) => {
         res.render('home/login');
+    },
+    register: (req, res) => {
+        res.render('home/register');
     }
 }; 
 
